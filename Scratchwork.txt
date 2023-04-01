@@ -1,0 +1,36 @@
+Idea:
+        Build a calculator that takes in dino and turret data and then returns soaking data such as bullets soaked per minute, estimated time to soak, amount able to soak before needing to heal
+
+Goals:
+        Organized, proper file structure lolt
+        Optimized well, no crashing (introduce catches for improper responses or edge cases)
+        Allow a user to input the time to soak 1 turret in minutes and gget an estimated bullet count returned
+        Cover all soaking dinos + reapers, diplo, etc
+        Cover all buffs and combinations of buffs
+        cover healing
+
+Var:
+        Turret Damage
+        Dinos
+        Bullets soaked per minute
+        estimated time to soak
+        bullet counnt
+        dino hp
+        saddle armor
+        imprint 
+        healing
+        yuty buff
+        mate boost
+        turret type(velo, plant x, auto, heavy, tek)
+
+Dinos:
+        Carbo
+        Trike
+        Stego
+        Gasbag
+        Rock golem
+        Diplo
+        Reaper
+        Paracer
+        Snow Owl
+

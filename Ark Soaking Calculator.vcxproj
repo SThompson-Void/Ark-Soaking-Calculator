@@ -128,6 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ark Soaking Calculator.cpp" />
+    <ClCompile Include="Dinos.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Scratchwork.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dinos.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
