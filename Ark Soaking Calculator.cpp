@@ -6,7 +6,10 @@
 #include "Dinos.h"
 int main()
 {
-    Dinos Trike("Trike", 13000.0, 25.0, 3.0);
+    Dinos Trike("Trike", 0, 0, 3.0);
+    Dinos Stego();
+    
+
     double saddle = Trike.getSaddle();
     std::cout << saddle << "\n";
     return 0;

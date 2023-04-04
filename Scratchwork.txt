@@ -23,14 +23,14 @@ Var:
         mate boost
         turret type(velo, plant x, auto, heavy, tek)
 
-Dinos:
-        Carbo
-        Trike
-        Stego
-        Gasbag
-        Rock golem
-        Diplo
-        Reaper
+Dinos + reduction :
+        Carbo          .2x shell, .5x tail
+        Trike               .15x head
+        Stego                   .7x tail
+        Gasbag                  .2x fully puffed
+        Rock golem                  .1 from autos lol
+        Diplo                   1x
+        Reaper                      
         Paracer
         Snow Owl
 
