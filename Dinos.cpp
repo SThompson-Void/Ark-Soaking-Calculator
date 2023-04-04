@@ -1,57 +1,48 @@
-#include "Dinos.h"
+
 #include <iostream>
 #include <string>
-class Dinos {
+#include "Dinos.h"
 
-private:
-	double health{};
-	double saddle{};
-	double dmgReduction{};
-	std::string name{};
-
-public:
-	Dinos(std::string b_name, double b_health, double b_saddle, double b_dmgReduction)
+	Dinos::Dinos( std::string b_name, double b_health, double b_saddle, double b_dmgReduction)
 	{
-		b_name = name;
-		b_health = health;
-		b_saddle = saddle;
-		b_dmgReduction = dmgReduction;
+		name = b_name;
+		health = b_health;
+		saddle = b_saddle;
+		dmgReduction = b_dmgReduction;
 
 	}
 
 
-	
-	std::string getName() {
+
+	std::string Dinos::getName() {
 		return name;
 	}
 
-	double getHealth() {
+	double Dinos::getHealth() {
 		return health;
 	}
 
-	double getSaddle() {
+	double Dinos::getSaddle() {
 		return saddle;
 	}
 
-	double getdmgReduction() {
+	double Dinos::getdmgReduction() {
 		return dmgReduction;
 	}
 
-	void setName(std::string s_name) {
+	void Dinos::setName( std::string s_name) {
 		name = s_name;
 	}
 
-	void setHealth(double s_health) {
+	void Dinos::setHealth(double s_health) {
 		health = s_health;
 	}
 
-	void setSaddle(double s_saddle) {
+	void Dinos::setSaddle(double s_saddle) {
 		saddle = s_saddle;
 	}
 
-	void setdmgReduction(double s_dmgReduction){
+	void Dinos::setdmgReduction(double s_dmgReduction) {
 		dmgReduction = s_dmgReduction;
 	}
 
-
-};

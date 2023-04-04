@@ -2,10 +2,14 @@
 //
 
 #include <iostream>
-
+#include <string>
+#include "Dinos.h"
 int main()
 {
-    std::cout << "Hello World!\n";
+    Dinos Trike("Trike", 13000.0, 25.0, 3.0);
+    double saddle = Trike.getSaddle();
+    std::cout << saddle << "\n";
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
