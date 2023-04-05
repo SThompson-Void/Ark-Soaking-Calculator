@@ -34,3 +34,10 @@ Dinos + reduction :
         Paracer
         Snow Owl
 
+
+ Turret Damage:
+ Plant X
+ Velo
+ Auto
+ Heavy
+ Tek

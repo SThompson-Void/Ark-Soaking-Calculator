@@ -4,16 +4,21 @@
 #include <iostream>
 #include <string>
 #include "Dinos.h"
+
+
+
 int main()
 {
-    Dinos Trike("Trike", 0, 0, 3.0);
-    Dinos Stego();
     
+    Dinos Trike("Trike", 3400.0, 0.0, .14, .14, false, false, false);
+    //Dinos Stego();
 
     double saddle = Trike.getSaddle();
     std::cout << saddle << "\n";
     return 0;
 }
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
