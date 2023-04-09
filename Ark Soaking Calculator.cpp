@@ -5,19 +5,26 @@
 #include <string>
 #include "Dinos.h"
 
-
+double getSaddleMult(double saddleArmor);
 
 int main()
 {
-    
-    Dinos Trike("Trike", 3400.0, 0.0, .14, .14, false, false, false);
-    //Dinos Stego();
+   
 
-    double saddle = Trike.getSaddle();
-    std::cout << saddle << "\n";
+    Dinos Soaker("Trike", 3400.0, 25.0, .14, .14, false, false, false);
+    //Dinos Stego();
+    
+    std::cout << "the damage multiplier from a saddle of " << Soaker.getSaddle() << " = " << getSaddleMult(Soaker.getSaddle());
+    
+
     return 0;
 }
 
+double getSaddleMult(double saddleArmor) {
+    double saddleMult{};
+    saddleMult = 100 / (100 + (4 * saddleArmor));
+    return saddleMult;
+}
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
