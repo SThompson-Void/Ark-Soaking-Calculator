@@ -37,5 +37,8 @@
     <ClInclude Include="Turret.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Healing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
