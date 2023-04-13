@@ -12,6 +12,8 @@ int chooseSoaker(std::string& name, double& damageMult, double& tekDamageMult);
 int setBuffs(bool& imprint, bool& mateBoost, bool& yutyBuff);
 int setHp(double& hp);
 int setSaddle(double& saddle);
+double getTotalNormalDmgMult(double saddle, double dmgMult, bool imprint, bool mateBoost, bool yutyBuff);
+double getTotalTekDmgMult(double saddle, double tekDmgMult, bool imprint, bool mateBoost, bool yutyBuff);
 
 int main()
 {
@@ -24,6 +26,7 @@ int main()
     bool imprint{};
     bool mateBoost{};
     bool yutyBuff{};
+    double totalDmgMult{};
 
     //welcome screen
     for (int i = 0; i < 60; i++) {
@@ -212,6 +215,36 @@ int setSaddle(double& saddle) {
     saddle = tempsaddle;
     return 0;
 }
+
+
+double getTotalNormalDmgMult(double saddle, double dmgMult, bool imprint, bool mateBoost, bool yutyBuff) {
+    double tempMult = getSaddleMult(saddle) * dmgMult;
+    if (mateBoost == true) {
+        tempMult *= .67;
+    }
+    if (imprint == true) {
+        tempMult *= .7;
+    }
+    if (yutyBuff == true) {
+        tempMult *= .75;
+    }
+    return tempMult;
+}
+
+double getTotalTekDmgMult(double saddle, double tekDmgMult, bool imprint, bool mateBoost, bool yutyBuff) {
+    double tempMult = getSaddleMult(saddle) * tekDmgMult;
+    if (mateBoost == true) {
+        tempMult *= .67;
+    }
+    if (imprint == true) {
+        tempMult *= .7;
+    }
+    if (yutyBuff == true) {
+        tempMult *= .75;
+    }
+    return tempMult;
+}
+
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
