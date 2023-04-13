@@ -14,6 +14,9 @@ int setHp(double& hp);
 int setSaddle(double& saddle);
 double getTotalNormalDmgMult(double saddle, double dmgMult, bool imprint, bool mateBoost, bool yutyBuff);
 double getTotalTekDmgMult(double saddle, double tekDmgMult, bool imprint, bool mateBoost, bool yutyBuff);
+double timeToHealDino(double hp, Healing object);
+
+//void printTimeToHealDinoList();
 
 int main()
 {
@@ -27,7 +30,6 @@ int main()
     bool mateBoost{};
     bool yutyBuff{};
     double totalDmgMult{};
-
     //welcome screen
     for (int i = 0; i < 60; i++) {
         std::cout << "=";
@@ -68,19 +70,20 @@ int main()
     Healing SnowOwl("Snow Owl Freeze", 2400);
     Healing FeedMeat("Force Feed Meat(Carnivores/Omnivores)", 1450);
     healthPerMinCheck = 0;
-    if (hp * .005 > 24000) {
+    if ((hp * .005)*60 > 24000) {
         healthPerMinCheck = 24000;
     }
     else {
-        healthPerMinCheck = hp * .005;
+        healthPerMinCheck = (hp * .005) * 60;
     }
     Healing Daedon("Daedon", healthPerMinCheck);
+
     healthPerMinCheck = 0;
-    if (hp * .0033 > 4800) {
+    if ((hp * .0033)*60 > 4800) {
         healthPerMinCheck = 4800;
     }
     else {
-        healthPerMinCheck = hp * .0033;
+        healthPerMinCheck = (hp * .0033) * 60;
     }
   
     Healing PlantZ("PlantZ", healthPerMinCheck);
@@ -92,7 +95,11 @@ int main()
     std::cout << "the damage multiplier from a saddle of " << Soaker.getSaddle() << " = " << getSaddleMult(Soaker.getSaddle());
     */
     
-
+    std::cout << "Minutes to heal with Veggie Cakes: " << timeToHealDino(hp, VeggieCake) << "\n";
+    std::cout << "Minutes to heal with Snow Owl: " << timeToHealDino(hp, SnowOwl) << "\n";
+    std::cout << "Minutes to heal with FeedMeat(If a carnivore): " << timeToHealDino(hp, FeedMeat) << "\n";
+    std::cout << "Minutes to heal with Daedon: " << timeToHealDino(hp, Daedon) << "\n";
+    std::cout << "Minutes to heal with Plant Z: " << timeToHealDino(hp, PlantZ) << "\n";
 
     return 0;
 }
@@ -245,6 +252,14 @@ double getTotalTekDmgMult(double saddle, double tekDmgMult, bool imprint, bool m
     return tempMult;
 }
 
+
+double timeToHealDino(double hp, Healing object) {
+    return hp / object.getHealPerMin();
+}
+
+/*void printTimeToHealDino() {
+    std::cout << "Minutes to heal with Veggie Cakes:" << VeggieCake;
+}*/
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
