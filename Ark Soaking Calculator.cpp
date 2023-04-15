@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "Dinos.h"
+#include "Dinos.h" 
 #include "Turret.h"
 #include "Healing.h"
 
@@ -15,6 +15,7 @@ int setSaddle(double& saddle);
 double getTotalNormalDmgMult(double saddle, double dmgMult, bool imprint, bool mateBoost, bool yutyBuff);
 double getTotalTekDmgMult(double saddle, double tekDmgMult, bool imprint, bool mateBoost, bool yutyBuff);
 double timeToHealDino(double hp, Healing object);
+double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, double totalTekDmg);
 
 //void printTimeToHealDinoList();
 
@@ -30,6 +31,9 @@ int main()
     bool mateBoost{};
     bool yutyBuff{};
     double totalDmgMult{};
+    double totalHeavyDmg{};
+    double totalAutoDmg{};
+    double totalTekDmg{};
     //welcome screen
     for (int i = 0; i < 60; i++) {
         std::cout << "=";
@@ -89,6 +93,7 @@ int main()
     Healing PlantZ("PlantZ", healthPerMinCheck);
 
 
+
    //print test
     /*
     std::cout << name << hp << saddle << dmgMult << tekDmgMult << imprint << mateBoost << yutyBuff;
@@ -100,6 +105,17 @@ int main()
     std::cout << "Minutes to heal with FeedMeat(If a carnivore): " << timeToHealDino(hp, FeedMeat) << "\n";
     std::cout << "Minutes to heal with Daedon: " << timeToHealDino(hp, Daedon) << "\n";
     std::cout << "Minutes to heal with Plant Z: " << timeToHealDino(hp, PlantZ) << "\n";
+
+    //getting final turret damage values
+    
+    totalAutoDmg = getTotalNormalDmgMult(saddle, dmgMult, imprint, mateBoost, yutyBuff) * AutoTurret.getDmg();
+    totalHeavyDmg = getTotalNormalDmgMult(saddle, dmgMult, imprint, mateBoost, yutyBuff) * HeavyTurret.getDmg();
+    totalTekDmg = getTotalTekDmgMult(saddle, dmgMult, imprint, mateBoost, yutyBuff) * HeavyTurret.getDmg();
+
+
+    //printing the soaking data
+
+    getPerSoakData(hp, totalAutoDmg, totalHeavyDmg, totalTekDmg);
 
     return 0;
 }
@@ -255,6 +271,28 @@ double getTotalTekDmgMult(double saddle, double tekDmgMult, bool imprint, bool m
 
 double timeToHealDino(double hp, Healing object) {
     return hp / object.getHealPerMin();
+}
+
+
+double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, double totalTekDmg) {
+    double pulloutHp{};
+    std::cout << "\nWhat is the hp that you will be stopping the soak at? ";
+    std::cin >> pulloutHp;
+    double soakHp = hp - pulloutHp;
+
+    double timeShots{};
+    timeShots = (soakHp / totalAutoDmg) / 2.5;
+    std::cout << "You can soak an auto for " << soakHp / totalAutoDmg << " shots or " << timeShots << " seconds" << " or " << timeShots /60 << " minutes before pulling out at " << pulloutHp << " hp\n";
+    timeShots = (soakHp / totalHeavyDmg) / 2.5;
+    std::cout << "You can soak a heavy for " << soakHp / totalHeavyDmg << " shots or " << timeShots << " seconds" << " or " << timeShots / 60 << " minutes before pulling out at " << pulloutHp << " hp\n";
+    timeShots = (soakHp / totalTekDmg) / 2.5;
+    std::cout << "You can soak a tek for for " << soakHp / totalTekDmg << " shots or " << timeShots << " seconds" << " or " << timeShots / 60 << " minutes before pulling out at " << pulloutHp << " hp\n";
+
+    //extend the function to provide data for the soaking times on more than one turret, maybe allow them to enter the amount of turrets
+
+
+    return 0;
+    
 }
 
 /*void printTimeToHealDino() {
