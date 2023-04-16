@@ -124,7 +124,7 @@ int chooseSoaker(std::string& name, double& damageMult, double& tekDamageMult) {
     int choice{};
     std::cout << "\n";
     std::cout << "Choose which dino you will be using as a soaker: \n\n";
-    std::cout << "1 = Trike \n 2 = Carbo\n 3 = Stego \n 4 = Gasbag \n 5 = Rock Golem \n 6 = Diplo \n 7 = Reaper \n 8 = Paracer \n 9 = Snow Owl :";
+    std::cout << "1 = Trike \n 2 = Carbo\n 3 = Stego \n 4 = Gasbag \n 5 = Rock Golem \n 6 = Diplo \n 7 = Reaper \n 8 = Paracer \n 9 = Snow Owl: ";
     std::cin >> choice;
     if (choice == 1) {
         std::cout << "\nYou have chosen a Trike, Damage Multiplier = .14, Tek Damage Multiplier = .14(Only when shot in the head)\n";
@@ -275,7 +275,16 @@ double timeToHealDino(double hp, Healing object) {
 
 
 double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, double totalTekDmg) {
+    int numAutos{};
+    int numHeavies{};
+    int numTeks{};
     double pulloutHp{};
+
+    double multiAutoDamage{};
+    double multiHeavyDamage{};
+    double multiTekDamage{};
+    double combinedTurretDamage{};
+
     std::cout << "\nWhat is the hp that you will be stopping the soak at? ";
     std::cin >> pulloutHp;
     double soakHp = hp - pulloutHp;
@@ -289,7 +298,25 @@ double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, doub
     std::cout << "You can soak a tek for for " << soakHp / totalTekDmg << " shots or " << timeShots << " seconds" << " or " << timeShots / 60 << " minutes before pulling out at " << pulloutHp << " hp\n";
 
     //extend the function to provide data for the soaking times on more than one turret, maybe allow them to enter the amount of turrets
+    std::cout << "\nEnter the number of Autos you will be soaking at once: ";
+    std::cin >> numAutos;
+    std::cout << "Enter the number of Heavies you will be soaking at once: ";
+    std::cin >> numHeavies;
+    std::cout << "Enter the number of Teks you will be soaking at once: ";
+    std::cin >> numTeks;
 
+    multiAutoDamage = numAutos * totalAutoDmg;
+    multiHeavyDamage = numHeavies * totalHeavyDmg;
+    multiTekDamage = numTeks * totalTekDmg;
+
+    combinedTurretDamage = multiAutoDamage + multiHeavyDamage + multiTekDamage;
+    timeShots = (soakHp / combinedTurretDamage) / 2.5;
+    std::cout << "\nYou can soak the specified turret count for " << soakHp / combinedTurretDamage << " shots from " << (numAutos+numHeavies+numTeks) << " Turrets \n or " << timeShots << " seconds" << " or " << timeShots / 60 << " minutes before pulling out at " << pulloutHp << " hp\n";
+    //it takes about 9.67 minutes or 580 seconds to soak a capped auto/heavy  and 16.667 minutes to soak a capped tek or 1000 seconds
+    //it takes 3.33 minutes per 1000 shards in a tek
+    //it takes 6.67 minutes per 1000 arb in an auto
+    //it takes 1.667 minutes per 1000 arb in a heavy
+    
 
     return 0;
     
