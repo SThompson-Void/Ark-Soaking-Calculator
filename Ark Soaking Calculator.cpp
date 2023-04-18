@@ -101,7 +101,7 @@ int main()
     */
     
     //creating the healers
-    std::cout << "Minutes to heal with Veggie Cakes: " << timeToHealDino(hp, VeggieCake) << "\n";
+    std::cout << "\nMinutes to heal with Veggie Cakes: " << timeToHealDino(hp, VeggieCake) << "\n";
     std::cout << "Minutes to heal with Snow Owl: " << timeToHealDino(hp, SnowOwl) << "\n";
     std::cout << "Minutes to heal with FeedMeat(If a carnivore): " << timeToHealDino(hp, FeedMeat) << "\n";
     std::cout << "Minutes to heal with Daedon: " << timeToHealDino(hp, Daedon) << "\n";
@@ -119,7 +119,18 @@ int main()
     getPerSoakData(hp, totalAutoDmg, totalHeavyDmg, totalTekDmg, VeggieCake, SnowOwl, FeedMeat, Daedon, PlantZ);
 
 
-    std::cout << "\n\nThat is the end of the data for this version of V O I D 's Ark Soaking Calculator, Have fun \n";
+    std::cout << "\n\n";
+
+    for (int i = 0; i < 60; i++) {
+        std::cout << "=";
+    }
+    std::cout << "\n";
+    std::cout << " E N D of V O I D 's  |Ark Soaking Calculator| Have fun!\n";
+
+    for (int i = 0; i < 60; i++) {
+        std::cout << "=";
+    }
+    std::cout << "\n";
 
     return 0;
 }
@@ -303,6 +314,7 @@ double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, doub
 
     std::cout << "\nWhat is the hp that you will be stopping the soak at? ";
     std::cin >> pulloutHp;
+    std::cout << "\n";
     double soakHp = hp - pulloutHp;
 
     double timeShots{};
@@ -327,24 +339,31 @@ double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, doub
 
     combinedTurretDamage = multiAutoDamage + multiHeavyDamage + multiTekDamage;
     timeShots = (soakHp / combinedTurretDamage) / 2.5;
-    std::cout << "\nYou can soak the specified turret count for " << soakHp / combinedTurretDamage << " shots from " << (numAutos+numHeavies+numTeks) << " Turrets \n -- " << timeShots << " seconds" << " \n -- " << timeShots / 60 << " minutes before pulling out at " << pulloutHp << " hp\n";
+    std::cout << "\nYou can soak the specified turret count from " << (numAutos+numHeavies+numTeks) << " turrets for: \n --"  << (soakHp / combinedTurretDamage) << " shots "  "\n -- " << timeShots << " seconds" << " \n -- " << timeShots / 60 << " minutes before pulling out at " << pulloutHp << " hp\n";
     //it takes about 9.67 minutes or 580 seconds to soak a capped auto/heavy  and 16.667 minutes to soak a capped tek or 1000 seconds
     //it takes 3.33 minutes per 1000 shards in a tek
     //it takes 6.67 minutes per 1000 arb in an auto
     //it takes 1.667 minutes per 1000 arb in a heavy
-    std::cout << "Enter the number of bullets you think are in each Auto turret: ";
-    std::cin >> autoBullets;
-    std::cout << "Enter the number of bullets you think are in each Heavy turret: ";
-    std::cin >> heavyBullets;
-    std::cout << "Enter the number of bullets you think are in each Tek turret: ";
-    std::cin >> tekBullets;
+    std::cout << " \n";
+    if (numAutos > 0) {
+        std::cout << "Enter the number of bullets you think are in each Auto turret: ";
+        std::cin >> autoBullets;
+    }
+    if (numHeavies > 0) {
+        std::cout << "Enter the number of bullets you think are in each Heavy turret: ";
+        std::cin >> heavyBullets;
+    }
+    if (numTeks > 0) {
+        std::cout << "Enter the number of bullets you think are in each Tek turret: ";
+        std::cin >> tekBullets;
+    }
 
     shots = autoBullets + (heavyBullets/4) + (tekBullets/2);
 
     int soakerChoice;
 
     std::cout << "\nSimulating a soaking session...\n";
-    std::cout << "Choose what you will be healing with\n 1 = Veggie Cakes \n 2 = Snow Owl\n 3 = Feeding Meat\n 4 = Deadon\n 5 = Plant Z: ";
+    std::cout << "\nChoose what you will be healing with\n 1 = Veggie Cakes \n 2 = Snow Owl\n 3 = Feeding Meat\n 4 = Deadon\n 5 = Plant Z: ";
     std::cin >> soakerChoice;
 
     while (shots >= 0) { 
@@ -352,7 +371,7 @@ double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, doub
         hp -= combinedTurretDamage;
         seconds += .4; //a turret shoots 1 shot every .4 seconds approximately
         if (hp <= pulloutHp) {
-            std::cout << "Pulling Out to Heal";
+            std::cout << "\nPulling Out to Heal...\n";
             if (soakerChoice == 1) {
                 seconds += originalHp / (VeggieCake.getHealPerMin() / 60);
             }
@@ -374,7 +393,7 @@ double getPerSoakData(double hp, double totalAutoDmg, double totalHeavyDmg, doub
         
     }
     
-    std::cout << "It will take you " << seconds << " seconds to soak these turrets with your chosen set up \n" << ", about " << seconds / 60 << " minutes to soak";
+    std::cout << "\nIt will take you " << seconds << " seconds (" << seconds /60 << "minutes) to soak\n";
 
    /* autoSoakTimeS = 580;
     heavySoakTimeS = 580;
