@@ -132,6 +132,9 @@ int main()
     }
     std::cout << "\n";
 
+    int wait{};
+    std::cin >> wait;
+
     return 0;
 }
 
